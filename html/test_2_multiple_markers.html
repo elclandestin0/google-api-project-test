@@ -76,8 +76,8 @@
           {title: 'Union Square Open Floor Plan', location: {lat: 40.7347062, lng: -73.9895759}},
           {title: 'East Village Hip Studio', location: {lat: 40.7281777, lng: -73.984377}},
           {title: 'TriBeCa Artsy Bachelor Pad', location: {lat: 40.7195264, lng: -74.0089934}},
-          {title: 'Chinatown Homey Space', location: {lat: 40.7180628, lng: -73.9961237}},
-          {title: 'Avenue des Erables', location: {lat: 45.531325, lng: -73.562271}}
+          {title: 'Chinatown Homey Space', location: {lat: 40.7180628, lng: -73.9961237}}
+          //{title: 'Avenue des Erables', location: {lat: 45.531325, lng: -73.562271}}
         ];
         var largeInfowindow = new google.maps.InfoWindow();
         // The following group uses the location array to create an array of markers on initialize.
@@ -89,7 +89,7 @@
           var marker = new google.maps.Marker({
             position: position,
             title: title,
-            animation: google.maps.Animation.DROP,
+            animation: google.maps.Animation.BOUNCE,
             id: i
           });
           // Push the marker to our array of markers.
@@ -111,9 +111,11 @@
           infowindow.marker = marker;
           infowindow.setContent('<div>' + marker.title + '</div>');
           infowindow.open(map, marker);
+          marker.setAnimation(null);
           // Make sure the marker property is cleared if the infowindow is closed.
           infowindow.addListener('closeclick', function() {
             infowindow.marker = null;
+            marker.setAnimation(google.maps.Animation.BOUNCE);
           });
         }
       }
