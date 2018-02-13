@@ -107,6 +107,8 @@
       // on that markers position.
       function populateInfoWindow(marker, infowindow) {
         // Check to make sure the infowindow is not already opened on this marker.
+        // If it is, then stop the animation from bouncing. If, however, we close
+        // the info window, then the animation begins again. 
         if (infowindow.marker != marker) {
           infowindow.marker = marker;
           infowindow.setContent('<div>' + marker.title + '</div>');
