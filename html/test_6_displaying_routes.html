@@ -191,6 +191,16 @@
           styles: styles,
           mapTypeControl: false
         });
+        // This autocomplete uses the Google Places Library to give you the
+        // searchable places
+        var originAutocomplete = new google.maps.places.Autocomplete(
+          document.getElementById('search-within-time-text'));
+        // Same as above
+        var zoomAutocomplete = new google.maps.places.Autocomplete(
+          document.getElementById('zoom-to-area-text'));
+        // The zoomAutocomplete gets the places bound to the area it is
+        // zoomed in on in the map we specified earlier.
+        zoomAutocomplete.bindTo('bounds', map);
         // These are the real estate listings that will be shown to the user.
         // Normally we'd have these in a database instead.
         var locations = [
@@ -528,7 +538,7 @@
 
     <script async defer
         src=
-        "https://maps.googleapis.com/maps/api/js?libraries=geometry,drawing&key=AIzaSyBLCHDQ3FQeYbynqmJPgXVm9h4JXgP_z3A&v=3&callback=initMap">
+        "https://maps.googleapis.com/maps/api/js?libraries=places,geometry,drawing&key=AIzaSyBLCHDQ3FQeYbynqmJPgXVm9h4JXgP_z3A&v=3&callback=initMap">
     </script>
 
   </body>
